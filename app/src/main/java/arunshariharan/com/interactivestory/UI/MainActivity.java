@@ -16,10 +16,17 @@ public class MainActivity extends Activity {
     private EditText mNameField;
     private Button mStartButton;
 
+    private String mName;
+    private String mSex;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        mName = intent.getStringExtra(getString(R.string.user_name));
+        mSex = intent.getStringExtra(getString(R.string.sex));
 
         mNameField = (EditText)findViewById(R.id.nameEditText);
         mStartButton = (Button)findViewById(R.id.startButton);
@@ -27,7 +34,7 @@ public class MainActivity extends Activity {
         mStartButton.setOnClickListener(new View.OnClickListener() {    //Just type in the button name and type in setOnClickListener with new View.On... to complete the inner class
             @Override
             public void onClick(View view) {
-                String name = mNameField.getText().toString();
+                String name = mName;
                 Toast.makeText(MainActivity.this, name,Toast.LENGTH_LONG).show();   //Using MainActivity.this rather than this because, this toast is inside the inner class of
                                                                                     // setOnClickListener and in order to access the actual activity, we use the activity name and then this.
 
@@ -47,7 +54,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        mNameField.setText(""); // This is to reset the name field when the player plays again or the activity is resumed
+       // mNameField.setText(""); // This is to reset the name field when the player plays again or the activity is resumed
     }
 }
 

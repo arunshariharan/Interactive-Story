@@ -79,11 +79,13 @@ public class StoryActivity extends Activity {
         //If we are reaching final pages, use this.
         if(mCurrentPage.isFinal()) {
             mChoice1.setVisibility(View.INVISIBLE);
-            mChoice2.setText(mCurrentPage.getChoice2().getText());
+            mChoice2.setText("Play Again");
             mChoice2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    finish();       //Since we are returning back to MainActivity from which this activity was initiated, we can just use finish() rather than starting a new intent.
+                    //finish();       //Since we are returning back to MainActivity from which this activity was initiated, we can just use finish() rather than starting a new intent.
+                    Intent intent = new Intent(StoryActivity.this,LandingActivity.class);
+                    startActivity(intent);
                 }
             });
 
